@@ -1,3 +1,5 @@
-<h1>Jobs</h1>
-
 <%= render @jobs %>
+
+<% if @jobs.none? %>
+  <article>Check back later for new jobs.</article>
+<% end %>

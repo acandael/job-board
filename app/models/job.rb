@@ -9,4 +9,8 @@ class Job < ApplicationRecord
       errors.add(:base, "Please provide an apply URL or email")
     end
   end
+
+  def to_param
+  [ id, title, "at", company ].join("-").parameterize
+  end
 end
