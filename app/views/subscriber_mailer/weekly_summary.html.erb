@@ -1,7 +1,7 @@
 <h1>New jobs this week</h1>
 
 <ul>
-  <% params[:jobs].each do |job| %>
+  <% @jobs.each do |job| %>
     <li>
       <%= link_to job do %>
         <%= job.title %>
@@ -16,3 +16,6 @@
     </li>
   <% end %>
 </ul>
+
+<%= link_to "unsubscribe",
+unsubscribe_url(token: params[:subscriber].generate_token_for(:unsubscribe)) %>

@@ -1,4 +1,8 @@
-<%= render @jobs %>
+<%= turbo_stream_from :jobs %>
+
+<div id="jobs">
+  <%= render @jobs %>
+</div>
 
 <% if @jobs.none? %>
   <article>Check back later for new jobs.</article>

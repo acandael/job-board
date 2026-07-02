@@ -1,5 +1,5 @@
 New jobs this week
-<% params[:jobs].each do |job| %>
+<% @jobs.each do |job| %>
   <%= link_to job do %>
     <%= job.title %>
     at
@@ -10,3 +10,5 @@ New jobs this week
   <%= job.region %>
   <%= job_url(job) %>
 <% end %>
+Unsubscribe:
+<%= unsubscribe_url(token: params[:subscriber].generate_token_for(:unsubscribe)) %>

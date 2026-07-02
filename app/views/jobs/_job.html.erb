@@ -1,4 +1,5 @@
-<div>
+<%= tag.div id: dom_id(job) do %>
+  <%= turbo_stream_from job %>
   <h3>
   <%= link_to job do %>
     <%= job.title %>
@@ -11,4 +12,4 @@
     -
     <%= job.region %></p>
   </p>
-</div>
+  <% end %>
