@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount MissionControl::Jobs::Engine, at: "/jobs"
+  mount MissionControl::Jobs::Engine, at: "/admin/solid_queue"
   resource :session
   resources :passwords, param: :token
   resource :registration, only: [ :new, :create ]
