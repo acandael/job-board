@@ -1,0 +1,12 @@
+New jobs this week
+<% params[:jobs].each do |job| %>
+  <%= link_to job do %>
+    <%= job.title %>
+    at
+    <%= job.company %>
+  <% end %>
+  <%= number_to_currency job.salary %>
+  -
+  <%= job.region %>
+  <%= job_url(job) %>
+<% end %>
