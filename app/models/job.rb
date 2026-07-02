@@ -1,4 +1,7 @@
 class Job < ApplicationRecord
+  belongs_to :user, optional: true
+  has_rich_text :description
+
   validates :title, :company, :salary, :region, presence: true
   # validates :apply_url, presence: true, unless: :apply_email?
   # validates :apply_email, presence: true, unless: :apply_url?
@@ -12,5 +15,9 @@ class Job < ApplicationRecord
 
   def to_param
   [ id, title, "at", company ].join("-").parameterize
+  end
+
+  def owner?
+  user_id? && user == Current.user
   end
 end

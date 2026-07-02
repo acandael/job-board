@@ -1,7 +1,9 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: [ :show, :edit, :update, :destroy ]
+  allow_unauthenticated_access only: [ :index, :show ]
+  before_action :set_job, only: [ :edit, :update, :destroy ]
+
   def index
-  @jobs = Job.all
+    @jobs = Job.all
   end
 
   def show
@@ -13,7 +15,7 @@ class JobsController < ApplicationController
   end
 
   def create
-  @job = Job.new(job_params)
+    @job = Current.user.jobs.new(job_params)
     if @job.save
         redirect_to @job, notice: "Your job was posted successfully."
     else
@@ -40,11 +42,11 @@ class JobsController < ApplicationController
   private
 
   def job_params
-  params.expect(job: [ :title, :company, :salary, :region, :apply_url, :apply_email ])
+  params.expect(job: [ :title, :company, :salary, :region, :apply_url, :apply_email, :description ])
   end
 
   def set_job
-  @job = Job.find(params[:id])
+    @job = Current.user.jobs.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
   end
